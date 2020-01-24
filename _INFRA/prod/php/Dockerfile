@@ -1,9 +1,10 @@
 FROM php:7.4-apache
 
 COPY . /var/www
-RUN rm -rf /INFRA
 
 WORKDIR /var/www
+
+RUN rm -rf _INFRA
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
         git \

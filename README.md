@@ -17,3 +17,9 @@ nowadays. So
 docker exec -it  briefing-tool-backend_laravel_1 bash
 ```
 And your good to go with your knows Laravel commands:  `composer install`, `php artisan ...` or `./vendor/bin/phpunit`.
+
+## Production
+Build Docker image on your host machine in projects root
+```
+docker build -f ./_INFRA/prod/php/Dockerfile -t laravel-eb-prod:latest .
+```

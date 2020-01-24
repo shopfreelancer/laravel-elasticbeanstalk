@@ -7,8 +7,8 @@ services:
     image: laravel-elasticbeanstalk:latest
     build: ./php
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     environment:
       - CONTAINER_ROLE=app
     working_dir: /var/www/

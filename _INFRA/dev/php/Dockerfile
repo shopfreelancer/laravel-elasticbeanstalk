@@ -1,31 +1,24 @@
-FROM php:7.4-apache
+FROM php:7.4.2-fpm-alpine3.10
 
 WORKDIR /var/www
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN apk add --no-cache \
+        $PHPIZE_DEPS \
         git \
         wget \
-        wget \
         unzip \
-        libpq-dev \
-        libzip-dev
+        postgresql-dev \
+        libzip-dev \
+        bash
 
 RUN docker-php-ext-install pcntl pdo pdo_pgsql zip bcmath
-
-RUN pecl install xdebug-2.8.1 \
-    && docker-php-ext-enable xdebug
 
 # install php_redis which is recommended for laravel https://laravel.com/docs/6.x/redis
 RUN pecl install -o -f redis \
 &&  rm -rf /tmp/pear \
 &&  docker-php-ext-enable redis
 
-COPY start.sh /usr/local/bin/start
-COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 
-RUN chown -R www-data:www-data /var/www/ \
-    && chmod u+x /usr/local/bin/start \
-    && a2enmod rewrite
 
 # Install Composer
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
@@ -37,4 +30,7 @@ RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
 
 #RUN composer install --ignore-platform-reqs --no-scripts
 
+COPY start.sh /usr/local/bin/start
+RUN chmod 700 /usr/local/bin/start
+#CMD ["php-fpm"]
 CMD ["/usr/local/bin/start"]

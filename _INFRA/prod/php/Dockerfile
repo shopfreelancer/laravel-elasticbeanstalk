@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:7.4.2-fpm-alpine3.10
 
 COPY . /var/www
 
@@ -6,13 +6,11 @@ WORKDIR /var/www
 
 RUN rm -rf _INFRA
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
-        git \
-        wget \
-        wget \
-        unzip \
-        libpq-dev \
-        libzip-dev
+RUN apk add git \
+            wget \
+            unzip \
+            libpq-dev \
+            libzip-dev
 
 RUN docker-php-ext-install pcntl pdo pdo_pgsql zip bcmath
 
@@ -25,12 +23,6 @@ RUN pecl install -o -f redis \
 &&  rm -rf /tmp/pear \
 &&  docker-php-ext-enable redis
 
-COPY _INFRA/prod/php/start.sh /usr/local/bin/start
-COPY _INFRA/prod/php/vhost.conf /etc/apache2/sites-available/000-default.conf
-
-RUN chown -R www-data:www-data /var/www/ \
-    && chmod u+x /usr/local/bin/start \
-    && a2enmod rewrite
 
 # Install Composer
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
@@ -41,5 +33,8 @@ RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
 && rm -f /tmp/composer-setup.*
 
 RUN composer install --ignore-platform-reqs --no-scripts
+
+
+COPY _INFRA/prod/php/start.sh /usr/local/bin/start
 
 CMD ["/usr/local/bin/start"]

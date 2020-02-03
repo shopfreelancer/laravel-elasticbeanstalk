@@ -13,3 +13,4 @@ yarn-error.log
 _INFRA/dev/db-data/*
 .DS_Store
 .idea
+_INFRA/**/db-data/*

@@ -14,3 +14,4 @@ _INFRA/dev/db-data/*
 .DS_Store
 .idea
 _INFRA/**/db-data/*
+docker-build.sh

@@ -13,10 +13,8 @@ RUN rm -rf _INFRA
 
 RUN set -ex \
   && apk --no-cache add \
-    postgresql-dev
-
-RUN apk update && apk add --no-cache \
             git \
+            postgresql-dev \
             wget \
             unzip \
             curl \
@@ -33,5 +31,6 @@ RUN pecl install -o -f redis \
 
 
 COPY _INFRA/prod/php/start.sh /usr/local/bin/start
+RUN chmod 700 /usr/local/bin/start
 
 CMD ["/usr/local/bin/start"]

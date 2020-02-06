@@ -10,6 +10,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-_INFRA/dev/db-data/*
+_INFRA/**/db-data/*
 .DS_Store
 .idea
+docker-build.sh

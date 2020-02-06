@@ -5,6 +5,7 @@
 /vendor
 .env
 .env.backup
+.env.local
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
@@ -14,3 +15,4 @@ _INFRA/**/db-data/*
 .DS_Store
 .idea
 docker-build.sh
+

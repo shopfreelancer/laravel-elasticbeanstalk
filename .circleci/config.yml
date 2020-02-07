@@ -9,7 +9,7 @@ workflows:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           dockerfile: Dockerfile
-          path: ./_INFRA/prod/php/
+          path: ./_INFRA/prod/php
           region: AWS_DEFAULT_REGION
           repo: 'laravel-elasticbeanstalk'
           tag: 'apache'

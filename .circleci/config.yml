@@ -9,5 +9,5 @@ workflows:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_DEFAULT_REGION
-          repo: AWS_RESOURCE_NAME_PREFIX
-          tag: 'apache, AWS_RESOURCE_NAME_PREFIX'
+          repo: 'laravel-elasticbeanstalk'
+          tag: 'apache'

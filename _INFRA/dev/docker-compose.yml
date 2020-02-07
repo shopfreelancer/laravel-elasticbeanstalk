@@ -11,7 +11,14 @@ services:
       - 443:443
     environment:
       - CONTAINER_ROLE=app
-    working_dir: /var/www/
+    volumes:
+      - ../../:/var/www/
+
+  horizon:
+    image: laravel-elasticbeanstalk:latest
+    build: ./php
+    environment:
+      - CONTAINER_ROLE=queue
     volumes:
       - ../../:/var/www/
 

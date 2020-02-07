@@ -1,5 +1,5 @@
 FROM composer:1.9.2 AS builder
-COPY . /app
+COPY ../../../ /app
 WORKDIR /app
 RUN composer install --ignore-platform-reqs --no-scripts
 
